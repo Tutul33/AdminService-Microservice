@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminService", "AdminService\AdminService.csproj", "{7DAAB33E-B35A-41F5-90F3-F4F1C05BB51B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessLogic", "BussinessLogic\BussinessLogic.csproj", "{BC6589E2-8352-440F-8C4E-85BCE08C2308}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7DAAB33E-B35A-41F5-90F3-F4F1C05BB51B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DAAB33E-B35A-41F5-90F3-F4F1C05BB51B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DAAB33E-B35A-41F5-90F3-F4F1C05BB51B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6589E2-8352-440F-8C4E-85BCE08C2308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6589E2-8352-440F-8C4E-85BCE08C2308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6589E2-8352-440F-8C4E-85BCE08C2308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6589E2-8352-440F-8C4E-85BCE08C2308}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
