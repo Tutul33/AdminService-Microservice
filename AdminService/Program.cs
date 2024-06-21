@@ -1,9 +1,17 @@
 using AdminService.DIServices;
 using BussinessLogic.DataRepository;
 using Data.DataContext.Models;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5001, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
+});
 builder.Services.AddGrpc();
 //Add services to the container.
 builder.Services.AddDbContext<DbProjectContext>(options =>

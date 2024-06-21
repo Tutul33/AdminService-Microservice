@@ -1,6 +1,4 @@
 syntax = "proto3";
-
-//option csharp_namespace = "AdminAPI.Protos";
 option csharp_namespace = "OrganizationService";
 
 service Organization {

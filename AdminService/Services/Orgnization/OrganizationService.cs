@@ -6,7 +6,7 @@ using Grpc.Core;
 using OrganizationService;
 namespace AdminService
 {
-    public class OrganizationService: Organization.OrganizationBase
+    public class OrganizationService : Organization.OrganizationBase
     {
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IOrganizationService _organizationService;
@@ -19,13 +19,13 @@ namespace AdminService
         {
             var _mapper = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<OrganizationRequest,OrganizationDTO>();
+                cfg.CreateMap<OrganizationRequest, OrganizationDTO>();
                 cfg.CreateMap<OrganizationDTO, OrganizationReply>();
             }).CreateMapper();
 
             var org = _mapper.Map<OrganizationDTO>(request);
 
-            var orgRes =await _organizationRepository.Save(org);
+            var orgRes = await _organizationRepository.Save(org);
 
             OrganizationReply orgRP = _mapper.Map<OrganizationReply>(orgRes);
             return orgRP;
