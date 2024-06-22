@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5001, listenOptions =>
+    options.ListenAnyIP(5002, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http2;
     });
