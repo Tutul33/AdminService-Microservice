@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -28,16 +28,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BussinessLogic\BussinessLogic.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="Data">
-      <HintPath>..\..\CommonDLL\Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Shared">
-      <HintPath>..\..\CommonDLL\Shared.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Protos\" />
   </ItemGroup>
