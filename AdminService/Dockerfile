@@ -9,6 +9,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["AdminService/AdminService.csproj", "AdminService/"]
+COPY ["BussinessLogic/BussinessLogic.csproj", "BussinessLogic/"]
+COPY ["Data/Data.csproj", "Data/"]
+COPY ["Shared/Shared.csproj", "Shared/"]
 RUN dotnet restore "./AdminService/./AdminService.csproj"
 COPY . .
 WORKDIR "/src/AdminService"
