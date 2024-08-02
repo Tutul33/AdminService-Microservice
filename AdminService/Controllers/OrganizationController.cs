@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdminAPI.Controllers
 {
-    [Route("api/[controller]"), Produces("application/json"), EnableCors("CORSPolicy")]
+    [Route("api/[controller]")]//, Produces("application/json"), EnableCors("CORSPolicy")
     [ApiController]
     public class OrganizationController : ControllerBase
     {
@@ -22,7 +22,8 @@ namespace AdminAPI.Controllers
         /// </summary>
         /// <param name="organizationDTO"></param>
         /// <returns></returns>
-        [HttpPost("Save")]
+        [HttpPost]
+        [Route("Save")]
         public async Task<OrganizationDTO> Save([FromBody]  OrganizationDTO organizationDTO) 
         {
             try

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "AdminService.Protos";
+
+service UserLogin {
+    rpc SetUserLogin (UserLoginRequest) returns (UserLoginReply);
+}
+
+message UserLoginRequest {
+    string UserName = 1;
+    string Password = 2;
+}
+
+message UserLoginReply {
+    int64 id = 1;
+    string fullName = 2; 
+    int32 age = 3; 
+    string birthDate = 4; 
+    string birthTime = 5; 
+    string address = 6; 
+    string country = 7; 
+    bool isactive = 8;
+    string createdDate = 9; 
+    string lastUpdate = 10; 
+    int64 lastUpdatedBy = 11;
+}

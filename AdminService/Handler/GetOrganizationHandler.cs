@@ -4,7 +4,7 @@ using BussinessLogic;
 using BussinessLogic.DataRepository;
 using BussinessLogic.DomainService;
 using MediatR;
-using OrganizationService;
+using AdminService.Protos;
 
 namespace AdminService.Handler
 {

@@ -3,7 +3,7 @@ using BussinessLogic;
 using BussinessLogic.DataRepository;
 using BussinessLogic.DomainService;
 using Grpc.Core;
-using OrganizationService;
+using AdminService.Protos;
 namespace AdminService
 {
     public class OrganizationService : Organization.OrganizationBase

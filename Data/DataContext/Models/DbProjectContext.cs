@@ -15,6 +15,10 @@ public partial class DbProjectContext : DbContext
     {
     }
 
+    public virtual DbSet<AdMenu> AdMenus { get; set; }
+
+    public virtual DbSet<AdMenuPermission> AdMenuPermissions { get; set; }
+
     public virtual DbSet<AdOrganization> AdOrganizations { get; set; }
 
     public virtual DbSet<AdUser> AdUsers { get; set; }
@@ -37,10 +41,31 @@ public partial class DbProjectContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=TUTULPC\\MSSQL_SRV_TUTUL;Database=DB_PROJECT;User Id=sa; Password=@Msi2023#;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=DB_PROJECT;User Id=sa; Password=@Msi2023#;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AdMenu>(entity =>
+        {
+            entity.ToTable("AD_Menu");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Icon).HasMaxLength(100);
+            entity.Property(e => e.Name).HasMaxLength(200);
+            entity.Property(e => e.Url).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<AdMenuPermission>(entity =>
+        {
+            entity.ToTable("AD_MenuPermission");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+        });
+
         modelBuilder.Entity<AdOrganization>(entity =>
         {
             entity.ToTable("AD_Organization");
@@ -63,6 +88,7 @@ public partial class DbProjectContext : DbContext
             entity.Property(e => e.BirthTime).HasMaxLength(50);
             entity.Property(e => e.Country).HasMaxLength(200);
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(200);
             entity.Property(e => e.FullName)
                 .HasMaxLength(300)
                 .IsUnicode(false);

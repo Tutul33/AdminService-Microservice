@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "AdminService.Protos";
+
+service RegisterUserService {
+    rpc RegisterUser (RegisterUserRequest) returns (RegisterUserReply);
+}
+
+message RegisterUserRequest {
+    string fullName = 1;
+    int32 age = 2;
+    string birthDate = 3; 
+    string birthTime = 4;
+    string address = 5;
+    string country = 6;
+}
+
+message RegisterUserReply {
+    int64 id = 1;
+    string fullName = 2; 
+    int32 age = 3; 
+    string birthDate = 4; 
+    string birthTime = 5; 
+    string address = 6; 
+    string country = 7; 
+    bool isactive = 8;
+    string createdDate = 9; 
+    string lastUpdate = 10; 
+    int64 lastUpdatedBy = 11;
+}

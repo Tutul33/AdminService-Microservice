@@ -32,13 +32,11 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Protos\" />
-  </ItemGroup>
-
   
   <ItemGroup>
     <Protobuf Include="Protos\Organization.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\UserLogin.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\RegisterUser.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 syntax = "proto3";
-option csharp_namespace = "OrganizationService";
+option csharp_namespace = "AdminService.Protos";
 
 service Organization {
     rpc GetOrganization (OrganizationRequest) returns (OrganizationReply);

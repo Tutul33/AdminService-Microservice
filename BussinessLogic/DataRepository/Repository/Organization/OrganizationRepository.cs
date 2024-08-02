@@ -35,15 +35,16 @@ namespace BussinessLogic.DataRepository
         {
             try
             {
-               
+                var MaxID2 = _context.AdOrganizations.DefaultIfEmpty().Max(x => x == null ? 0 : x.Id) + 1;
                 var _mapper = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<OrganizationDTO, AdOrganization>();
+                    cfg.CreateMap<OrganizationDTO, AdOrganization>().ForMember(dest=>dest.Id,opt=>opt.MapFrom(src=>MaxID2));
                 }).CreateMapper();
 
                 var org = _mapper.Map<AdOrganization>(organization);
 
                 _context.Add(org);
+
                 await _context.SaveChangesAsync();
 
                 return organization;

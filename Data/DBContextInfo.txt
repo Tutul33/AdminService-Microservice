@@ -1,2 +1,3 @@
 ﻿Package Manager Console->
 PM> Scaffold-DbContext "Server=TUTULPC\MSSQL_SRV_TUTUL;Database=DB_PROJECT;User Id=sa; Password=@Msi2023#;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataContext\Models -force
+Scaffold-DbContext "Server=127.0.0.1,1433;Database=DB_PROJECT;User Id=sa; Password=@Msi2023#;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataContext\Models -force

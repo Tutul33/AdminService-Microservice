@@ -9,6 +9,8 @@ public partial class AdUser
 
     public string? FullName { get; set; }
 
+    public string? Email { get; set; }
+
     public short? Age { get; set; }
 
     public DateOnly? BirthDate { get; set; }
@@ -18,6 +20,8 @@ public partial class AdUser
     public string? Address { get; set; }
 
     public string? Country { get; set; }
+
+    public bool? TermsAndConditions { get; set; }
 
     public bool? IsActive { get; set; }
 

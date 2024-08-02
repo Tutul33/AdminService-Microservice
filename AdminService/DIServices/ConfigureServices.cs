@@ -8,6 +8,7 @@ namespace AdminService.DIServices
         {            
 
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOrganizationService, BussinessLogic.DomainService.OrganizationService>();
         }
     }

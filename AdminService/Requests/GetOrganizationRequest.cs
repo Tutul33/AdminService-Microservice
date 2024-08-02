@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using OrganizationService;
+using AdminService.Protos;
 
 namespace AdminService.Requests
 {
