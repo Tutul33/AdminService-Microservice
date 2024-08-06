@@ -9,7 +9,7 @@ namespace Shared
 {
     public class RowEntity<T>:IIdentity<T>
     {
-        public EntityState? tag { get; set; }
+        public int? tag { get; set; }
         public T? Id { get ; set; }
         public bool? IsActive { get; set; }
     }

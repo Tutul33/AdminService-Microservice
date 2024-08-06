@@ -9,5 +9,7 @@ namespace BussinessLogic
         public string UserName { get; set; } = "";
         [Required]
         public string Password { get; set; } = "";
+
+        public List<UserContactAddressDTO> UserContactAddresses { get; set; } = new List<UserContactAddressDTO>();
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityState = Shared.EntityState;
 
 namespace BussinessLogic.DataRepository
 {
@@ -32,12 +33,13 @@ namespace BussinessLogic.DataRepository
             }
         }
 
-        public async Task<UserDTO> Save(UserDTO User)
+        public async Task<UserDTO> Save(UserDTO userDto)
         {
             try
             {
                 var MaxID = _context.AdUsers.DefaultIfEmpty().Max(x => x == null ? 0 : x.Id) + 1;
-                var _mapper = new MapperConfiguration(cfg =>
+                var MaxContactID = _context.AdUserContactAddresses.DefaultIfEmpty().Max(x => x == null ? 0 : x.Id) + 1;
+                var _userMapper = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<UserDTO, AdUser>()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => MaxID))
@@ -60,25 +62,50 @@ namespace BussinessLogic.DataRepository
                     ;
                 }).CreateMapper();
 
-                var user = _mapper.Map<AdUser>(User);
+                var _userContactMapper = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<UserContactAddress, AdUserContactAddress>()
+                       .BeforeMap((src, dest) =>
+                       {
+                           src.Id = MaxContactID++;
+                           src.IsActive = true;
+                       })
+                       .AfterMap((src, dest) =>
+                       {
+                           switch (src.tag)
+                           {
+                               case (int)EntityState.Added:
+                                   _context.Add(src);
+                                   break;
+                               case (int)EntityState.Modified:
+                                   _context.Update(src);
+                                   break;
+                               case (int)EntityState.Deleted:
+                                   _context.Remove(src);
+                                   break;
+                               default:
+                                   break;
+                           }
+                       });
+                }).CreateMapper();
 
+                // Mapping userDto to AdUser
+                var user = _userMapper.Map<AdUser>(userDto);
                 _context.Add(user);
 
+                // User Contact Modification
+                userDto.UserContactAddresses.ForEach(item =>
+                {
+                    var adUserContactAddress = _userContactMapper.Map<AdUserContactAddress>(item);
+                    // This mapping will trigger the AfterMap actions
+                });
 
-                var MaxID2 = _context.AdUserLogins.DefaultIfEmpty().Max(x => x == null ? 0 : x.Id) + 1;
-                AdUserLogin login = new AdUserLogin();
-                login.Id = MaxID2;
-                login.UserId = MaxID;
-                login.UserName = User.UserName;
-                login.Password = User.Password;
-                login.IsActive = true;
-                login.CreatedDate = DateTime.Now;
-                login.LastUpdate = DateTime.Now;
-                _context.Add(login);
+                //Set User Login
+                await SetUserLogin(userDto, MaxID);
 
                 await _context.SaveChangesAsync();
 
-                return User;
+                return userDto;
             }
             catch (Exception ex)
             {
@@ -86,6 +113,21 @@ namespace BussinessLogic.DataRepository
                 throw ex;
             }
         }
+
+        private async Task SetUserLogin(UserDTO userDto, long MaxID)
+        {
+            var MaxID2 = await _context.AdUserLogins.DefaultIfEmpty().MaxAsync(x => x == null ? 0 : x.Id) + 1;
+            AdUserLogin login = new AdUserLogin();
+            login.Id = MaxID2;
+            login.UserId = MaxID;
+            login.UserName = userDto.UserName;
+            login.Password = userDto.Password;
+            login.IsActive = true;
+            login.CreatedDate = DateTime.Now;
+            login.LastUpdate = DateTime.Now;
+            _context.Add(login);
+        }
+
         public async Task<UserDTO> UserLogin(UserLoginDTO User)
         {
             try

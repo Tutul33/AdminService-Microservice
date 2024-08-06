@@ -23,6 +23,8 @@ public partial class DbProjectContext : DbContext
 
     public virtual DbSet<AdUser> AdUsers { get; set; }
 
+    public virtual DbSet<AdUserContactAddress> AdUserContactAddresses { get; set; }
+
     public virtual DbSet<AdUserLogin> AdUserLogins { get; set; }
 
     public virtual DbSet<InvItem> InvItems { get; set; }
@@ -93,6 +95,17 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(300)
                 .IsUnicode(false);
             entity.Property(e => e.LastUpdate).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<AdUserContactAddress>(entity =>
+        {
+            entity.ToTable("AD_UserContactAddress");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Address).HasMaxLength(500);
+            entity.Property(e => e.ContactNo).HasMaxLength(50);
         });
 
         modelBuilder.Entity<AdUserLogin>(entity =>
